@@ -1,0 +1,27 @@
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
+	<style name="ActionBarAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
+	<style name="MenuButton">
+		<item name="android:layout_gravity">fill</item>
+		<item name="android:padding">5dp</item>
+		<item name="android:gravity">bottom|right</item>
+		<item name="android:background">#FFFFFF</item>
+		<item name="android:textColor">@color/colorPrimaryDark</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:onClick">onClick</item>
+	</style>
+
+</resources>

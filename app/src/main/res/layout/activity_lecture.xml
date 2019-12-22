@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".LectureActivity">
+
+	<TableLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="10dp">
+		<TableRow>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="강의명"
+				android:textSize="18sp" />
+			<EditText android:id="@+id/hh"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:inputType="text" />
+
+		</TableRow>
+		<TableRow>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="교수이름"
+				android:textSize="18sp" />
+			<EditText android:id="@+id/prof_name"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:inputType="text" />
+
+		</TableRow>
+		<TableRow>
+
+			<TableLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:layout_marginTop="10dp">
+				<TableRow>
+
+					<TextView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="검색년도"
+						android:textSize="18sp" />
+					<TextView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="검색학기"
+						android:textSize="18sp" />
+
+				</TableRow>
+				<TableRow>
+
+					<Spinner android:id="@+id/this_year"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1" />
+					<Spinner android:id="@+id/hakgi"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1" />
+
+				</TableRow>
+			</TableLayout>
+
+		</TableRow>
+		<TableRow>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="공통과목"
+				android:textSize="18sp" />
+			<Spinner android:id="@+id/fsel1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1" />
+
+		</TableRow>
+		<TableRow>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="학과/전공"
+				android:textSize="18sp" />
+			<Spinner android:id="@+id/fsel2"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1" />
+
+		</TableRow>
+	</TableLayout>
+
+	<Button android:id="@+id/button"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="검색!"
+		android:enabled="false"
+		android:onClick="onClick" />
+
+	<ListView android:id="@+id/list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+</LinearLayout>
