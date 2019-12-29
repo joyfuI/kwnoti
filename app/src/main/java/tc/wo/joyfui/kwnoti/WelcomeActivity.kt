@@ -2,6 +2,7 @@ package tc.wo.joyfui.kwnoti
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_welcome.*
@@ -16,7 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
 		sharePref = PreferenceManager.getDefaultSharedPreferences(this)
 	}
 
-	fun onClick() {
+	fun onClick(view: View) {
 		val editer = sharePref.edit()
 		editer.putString("id", id.text.toString())
 		editer.putString("passwd", passwd.text.toString())

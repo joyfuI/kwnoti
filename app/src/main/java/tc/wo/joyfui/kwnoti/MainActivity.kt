@@ -3,6 +3,7 @@ package tc.wo.joyfui.kwnoti
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Point
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -40,8 +41,25 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	fun onClick(view: View) {
-		val intent = Intent()
+		var intent = Intent()
 		when (view) {
+			student_id -> {	// 모바일학생증
+				intent = packageManager.getLaunchIntentForPackage("idoit.slpck.kwangwoon") ?: Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=idoit.slpck.kwangwoon"))	// 중앙도서관 앱이 설치되어 있지 않으면 플레이스토어 실행
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+				startActivity(intent)
+				Toast.makeText(this, "모바일학생증 기능은 중앙도서관 앱을 이용해주세요.", Toast.LENGTH_SHORT).show()
+			}
+
+			notice -> {	// 공지사항
+				intent.setClass(this, NoticeActivity::class.java)
+				startActivity(intent)
+			}
+
+			bachelor -> {	// 학사일정
+				intent.setClass(this, BachelorActivity::class.java)
+				startActivity(intent)
+			}
+
 			setting -> {	// 설정
 				intent.setClass(this, SettingsActivity::class.java)
 				startActivity(intent)
