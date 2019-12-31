@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_notice.*
 
 class NoticeActivity : AppCompatActivity() {
-	val url = "https://www.kw.ac.kr/ko/life/notice.do"
+	private val url = "https://www.kw.ac.kr/ko/life/notice.do"
 
 	@SuppressLint("SetJavaScriptEnabled")
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +23,16 @@ class NoticeActivity : AppCompatActivity() {
 	}
 
 	override fun onBackPressed() {
-		super.onBackPressed()
+		if (isMain()) {	// 메인 페이지면
+			super.onBackPressed()	// 액티비티 뒤로가기
+		} else if (web.canGoBack()) {	// 페이지 히스토리가 남아 있으면
+			web.goBack()	// 페이지 뒤로가기
+		} else {
+			super.onBackPressed()	// 액티비티 뒤로가기
+		}
 	}
 
-	fun isMain(): Boolean {	// 메인 페이지인지 확인하는 함수
+	private fun isMain(): Boolean {	// 메인 페이지인지 확인하는 함수
 		val url = web.originalUrl
 		if (url.contains(this.url)) {
 			if (url.contains("articleNo")) {

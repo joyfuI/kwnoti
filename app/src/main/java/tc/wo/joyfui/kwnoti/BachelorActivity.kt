@@ -13,7 +13,7 @@ class BachelorActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_bachelor)
 
 		val calendar = Calendar()
-		calendar.setOnLoginListener(object : Calendar.OnCalendarListener {
+		calendar.onCalendarListener = object : Calendar.OnCalendarListener {
 			@SuppressLint("SetJavaScriptEnabled")
 			override fun onSuccess(content: String) {	// 가져오기 성공
 				web.settings.javaScriptEnabled = true	// 자바스크립트 활성화
@@ -24,7 +24,7 @@ class BachelorActivity : AppCompatActivity() {
 				Toast.makeText(this@BachelorActivity, "학사일정을 가져오는데 실패했습니다.\n$message", Toast.LENGTH_SHORT).show()
 				finish()	// 닫기
 			}
-		})
+		}
 		calendar.execute()	// 학사일정 가져오기
 	}
 }

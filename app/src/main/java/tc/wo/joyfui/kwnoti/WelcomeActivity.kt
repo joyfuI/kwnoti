@@ -8,7 +8,7 @@ import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {
-	lateinit var sharePref: SharedPreferences
+	private lateinit var sharePref: SharedPreferences
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -17,7 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
 		sharePref = PreferenceManager.getDefaultSharedPreferences(this)
 	}
 
-	fun onClick(view: View) {
+	fun onClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val editer = sharePref.edit()
 		editer.putString("id", id.text.toString())
 		editer.putString("passwd", passwd.text.toString())

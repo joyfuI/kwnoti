@@ -12,7 +12,7 @@ import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-	lateinit var sharePref: SharedPreferences
+	private lateinit var sharePref: SharedPreferences
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 				startActivity(intent)
 				Toast.makeText(this, "모바일학생증 기능은 중앙도서관 앱을 이용해주세요.", Toast.LENGTH_SHORT).show()
+			}
+
+			u_campus -> {	// U-CAMPUS
+				intent.setClass(this, UcampusActivity::class.java)
+				startActivity(intent)
 			}
 
 			notice -> {	// 공지사항

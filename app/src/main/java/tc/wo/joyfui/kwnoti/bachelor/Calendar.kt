@@ -1,9 +1,10 @@
 package tc.wo.joyfui.kwnoti.bachelor
 
 import android.os.AsyncTask
-import okhttp3.*
+import okhttp3.ConnectionSpec
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.jsoup.Jsoup
-import java.util.*
 
 class Calendar : AsyncTask<Void, Void, Boolean>() {
 	interface OnCalendarListener {
@@ -11,25 +12,19 @@ class Calendar : AsyncTask<Void, Void, Boolean>() {
 		fun onFailure(message: String)
 	}
 
-	var callback: OnCalendarListener? = null
-	var content = ""
-	var message = ""
-
-	fun setOnLoginListener(callback: OnCalendarListener) {
-		this.callback = callback
-	}
+	var onCalendarListener: OnCalendarListener? = null
+	private var content = ""
+	private var message = ""
 
 	override fun doInBackground(vararg p0: Void?): Boolean {
 		val client = OkHttpClient.Builder()
-			.connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS))	// 최신 TLS로 접속 실패하면 이전 TLS로 접속 시도
+			.connectionSpecs(listOf(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS))	// 최신 TLS로 접속 실패하면 이전 TLS로 접속 시도
 			.build()
-		val request: Request
-		val response: Response
 
-		request = Request.Builder()
+		val request = Request.Builder()
 			.url("https://www.kw.ac.kr/ko/life/bachelor_calendar.do")
 			.build()
-		response = client.newCall(request).execute()
+		val response = client.newCall(request).execute()
 		if (!response.isSuccessful) {	// 접속 실패
 			message = response.message
 			return false
@@ -54,7 +49,7 @@ class Calendar : AsyncTask<Void, Void, Boolean>() {
 	}
 
 	override fun onPostExecute(result: Boolean?) {
-		callback?.let {
+		onCalendarListener?.let {
 			if (result!!) {
 				it.onSuccess(content)	// 학사일정 가져오기 성공
 			} else {

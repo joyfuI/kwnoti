@@ -13,12 +13,24 @@
 		android:theme="@style/AppTheme">
 		<activity android:name=".BachelorActivity" />
 		<activity android:name=".NoticeActivity" />
-		<activity android:name=".WelcomeActivity" />
+		<activity
+			android:name=".LectureActivity"
+			android:theme="@style/ActionBarAppTheme" />
+		<activity
+			android:name=".Lecture2Activity"
+			android:label="@string/title_activity_lecture"
+			android:theme="@style/ActionBarAppTheme" />
+		<activity android:name=".PostActivity" />
+		<activity android:name=".BoardActivity" />
 		<activity
 			android:name=".SettingsActivity"
 			android:label="@string/title_activity_settings"
 			android:theme="@style/ActionBarAppTheme" />
-		<activity android:name=".MainActivity">
+		<activity android:name=".WelcomeActivity" />
+		<activity android:name=".UcampusActivity" />
+		<activity
+			android:name=".MainActivity"
+			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
