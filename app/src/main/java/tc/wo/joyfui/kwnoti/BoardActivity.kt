@@ -32,6 +32,7 @@ class BoardActivity : AppCompatActivity() {
 
 		val board = Board()
 		board.onBoardListener = object : Board.OnBoardListener {
+			@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 			override fun onSuccess(list: List<MyItem>) {	// 글목록 가져오기 성공
 				postList = list
 
@@ -46,7 +47,7 @@ class BoardActivity : AppCompatActivity() {
 				list_view.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, p2, p3 ->	// 클릭 리스너
 					val post = postList[p2]
 
-					val intent = Intent(this@BoardActivity, PostActivity::class.java)
+					@Suppress("NAME_SHADOWING") val intent = Intent(this@BoardActivity, PostActivity::class.java)
 
 					intent.putExtra("ItemId", itemId)
 					intent.putExtra("p_bdseq", post.p_bdseq)

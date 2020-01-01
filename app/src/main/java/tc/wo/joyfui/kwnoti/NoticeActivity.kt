@@ -23,12 +23,12 @@ class NoticeActivity : AppCompatActivity() {
 	}
 
 	override fun onBackPressed() {
-		if (isMain()) {	// 메인 페이지면
-			super.onBackPressed()	// 액티비티 뒤로가기
-		} else if (web.canGoBack()) {	// 페이지 히스토리가 남아 있으면
-			web.goBack()	// 페이지 뒤로가기
-		} else {
-			super.onBackPressed()	// 액티비티 뒤로가기
+		when {
+			isMain() -> super.onBackPressed()	// 메인 페이지면 액티비티 뒤로가기
+
+			web.canGoBack() -> web.goBack()	// 페이지 히스토리가 남아 있으면 페이지 뒤로가기
+
+			else -> super.onBackPressed()	// 액티비티 뒤로가기
 		}
 	}
 

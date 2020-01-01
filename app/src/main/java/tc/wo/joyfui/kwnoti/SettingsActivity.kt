@@ -19,9 +19,8 @@ class SettingsActivity : AppCompatActivity() {
 	class SettingsFragment : PreferenceFragmentCompat() {
 		override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 			setPreferencesFromResource(R.xml.root_preferences, rootKey)
-			var preference: EditTextPreference?
 
-			preference = findPreference("id")
+			var preference: EditTextPreference? = findPreference("id")
 			preference?.setOnBindEditTextListener {
 				it.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL	// android:inputType="number"
 			}

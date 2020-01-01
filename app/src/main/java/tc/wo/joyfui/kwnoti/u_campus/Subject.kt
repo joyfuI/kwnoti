@@ -36,7 +36,7 @@ class Subject : AsyncTask<Void, Void, Boolean>() {
 
 		val subjectTable = doc.select("table.main_box:nth-child(7) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1)").select("tr")
 		for (i in subjectTable) {
-			var m = Pattern.compile("\\](.*) \\(").matcher(i.select("td:nth-child(2)").text())
+			var m = Pattern.compile("](.*) \\(").matcher(i.select("td:nth-child(2)").text())
 			m.find()
 			val name = m.group(1)
 			val time = i.select("td:nth-child(3)").text()

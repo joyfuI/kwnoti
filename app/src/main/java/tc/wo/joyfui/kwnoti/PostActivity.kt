@@ -24,12 +24,12 @@ class PostActivity : AppCompatActivity() {
 
 		val post = Post()
 		post.onPostListener = object : Post.OnPostListener {
-			override fun onSuccess(title: String?, content: String?) {	// 글 가져오기 성공
+			override fun onSuccess(title: String, content: String) {	// 글 가져오기 성공
 				post_title.text = title
 				web.loadDataWithBaseURL("https://info2.kw.ac.kr/", content, "text/html", "UTF-8", null)	// 웹뷰 출력 (상대주소 대응)
 			}
 
-			override fun onFailure(message: String?) {	// 글 가져오기 실패
+			override fun onFailure(message: String) {	// 글 가져오기 실패
 				Toast.makeText(this@PostActivity, "글을 가져오는데 실패했습니다.\n$message", Toast.LENGTH_SHORT).show()
 				finish()	// 닫기
 			}

@@ -7,8 +7,8 @@ import org.jsoup.Jsoup
 
 class Post : AsyncTask<String, Void, Boolean>() {
 	interface OnPostListener {
-		fun onSuccess(title: String?, content: String?)
-		fun onFailure(message: String?)
+		fun onSuccess(title: String, content: String)
+		fun onFailure(message: String)
 	}
 
 	var onPostListener: OnPostListener? = null

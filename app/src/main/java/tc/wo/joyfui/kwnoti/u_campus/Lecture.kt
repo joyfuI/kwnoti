@@ -21,7 +21,7 @@ class Lecture : AsyncTask<String, Void, Boolean>() {
 		var request = Request.Builder()
 			.url("https://info.kw.ac.kr/webnote/lecture/captcha.php")
 			.build()
-		client.newCall(request).execute()	// 캡챠를 한번 방문해야 접속 가능
+		client.newCall(request).execute()	// 캡차를 한번 방문해야 접속 가능
 
 		request = Request.Builder()
 			.url("https://info.kw.ac.kr/webnote/lecture/" + p0[0])
