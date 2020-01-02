@@ -2,7 +2,6 @@ package tc.wo.joyfui.kwnoti
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Point
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -17,11 +16,6 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-
-		val point = Point()
-		windowManager.defaultDisplay.getSize(point)	// 화면 크기 구하기
-
-		grid_layout.layoutParams.height = point.x * grid_layout.rowCount / grid_layout.columnCount	// 화면 크기에 따라 높이 조절
 
 		sharePref = PreferenceManager.getDefaultSharedPreferences(this)
 		val welcome = sharePref.getBoolean("welcome", true)	// 첫 실행 여부 가져오기
