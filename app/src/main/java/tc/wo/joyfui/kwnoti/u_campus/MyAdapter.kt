@@ -30,10 +30,7 @@ class MyAdapter(context: Context, private val data: List<MyItem>) : BaseAdapter(
 		viewHolder = itemView?.tag as? ViewHolder ?: {
 			itemView = layoutInflater.inflate(R.layout.list_item, null)
 
-			viewHolder = ViewHolder()
-			viewHolder.title = itemView!!.findViewById(R.id.title)
-			viewHolder.subtitle = itemView!!.findViewById(R.id.subtitle)
-
+			viewHolder = ViewHolder(itemView!!)
 			itemView!!.tag = viewHolder
 
 			viewHolder
@@ -45,8 +42,8 @@ class MyAdapter(context: Context, private val data: List<MyItem>) : BaseAdapter(
 		return itemView!!
 	}
 
-	private class ViewHolder {
-		lateinit var title: TextView
-		lateinit var subtitle: TextView
+	private class ViewHolder(view: View) {
+		val title: TextView = view.findViewById(R.id.title)
+		val subtitle: TextView = view.findViewById(R.id.subtitle)
 	}
 }
