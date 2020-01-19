@@ -1,22 +1,20 @@
 package tc.wo.joyfui.kwnoti
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_ucampus.*
-import tc.wo.joyfui.kwnoti.u_campus.Login
-import tc.wo.joyfui.kwnoti.u_campus.MyAdapter
-import tc.wo.joyfui.kwnoti.u_campus.MyItem
-import tc.wo.joyfui.kwnoti.u_campus.Subject
+import tc.wo.joyfui.kwnoti.u_campus.*
 
-class UcampusActivity : AppCompatActivity(), Subject.OnSubjectListener {
+class UcampusActivity : AppCompatActivity(), Subject.OnSubjectListener, DialogInterface.OnClickListener {
 	private lateinit var subjectList: List<MyItem>
+	private var position = -1
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -48,17 +46,22 @@ class UcampusActivity : AppCompatActivity(), Subject.OnSubjectListener {
 		login.execute(ID, PASSWD)	// 유캠퍼스 로그인
 	}
 
-	@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 	override fun onSuccess(list: List<MyItem>) {	// 과목 가져오기 성공
 		subjectList = list
-		val adapter = MyAdapter(this, subjectList)
 
-		list_view.adapter = adapter
-		list_view.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, p2, p3 ->	// 클릭 리스너
-			registerForContextMenu(list_view)
-			openContextMenu(p1)    // 컨텍스트 메뉴 띄우기
-			unregisterForContextMenu(list_view)
+		val adapter = MyAdapter(subjectList)
+		adapter.onClickListener = object : MyAdapter.OnClickListener {
+			override fun onClick(view: View, position: Int) {
+				this@UcampusActivity.position = position
+				AlertDialog.Builder(view.context)
+					.setItems(R.array.ucampus_menu, this@UcampusActivity)
+					.show()
+			}
 		}
+
+		list_view.layoutManager = LinearLayoutManager(this)
+		list_view.adapter = adapter
+		list_view.addItemDecoration(MyItemDecoration())
 	}
 
 	override fun onFailure(message: String) {	// 과목 가져오기 실패
@@ -66,32 +69,24 @@ class UcampusActivity : AppCompatActivity(), Subject.OnSubjectListener {
 		finish()	// 닫기
 	}
 
-	fun onClick(@Suppress("UNUSED_PARAMETER") view: View) {	// 강의계획서 검색
+	fun onClick(view: View) {	// 강의계획서 검색
 		val intent = Intent(this, LectureActivity::class.java)
 		startActivity(intent)
 	}
 
-	override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {	// 컨텍스트 메뉴를 띄울 때
-		super.onCreateContextMenu(menu, v, menuInfo)
-
-		val inflater = menuInflater
-		inflater.inflate(R.menu.ucampus_menu, menu)	// 메뉴 생성
-	}
-
-	override fun onContextItemSelected(item: MenuItem): Boolean {	// 컨텍스트 메뉴를 선택했을 때
-		val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
-		val subject = subjectList[info.position]
+	override fun onClick(p0: DialogInterface?, p1: Int) {	// AlertDialog 클릭 리스너
+		val arr = resources.getStringArray(R.array.ucampus_menu)
+		val subject = subjectList[position]
 
 		val intent = Intent(this, BoardActivity::class.java)
 
 		intent.putExtra("title", subject.name)
-		intent.putExtra("ItemId", item.itemId)
+		intent.putExtra("ItemId", arr[p1])
 		intent.putExtra("p_subj", subject.p_subj)
 		intent.putExtra("p_year", subject.p_year)
 		intent.putExtra("p_subjseq", subject.p_subjseq)
 		intent.putExtra("p_class", subject.p_class)
 
 		startActivity(intent)
-		return super.onContextItemSelected(item)
 	}
 }

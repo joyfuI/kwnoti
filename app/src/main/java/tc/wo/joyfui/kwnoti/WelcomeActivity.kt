@@ -17,7 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
 		sharePref = PreferenceManager.getDefaultSharedPreferences(this)
 	}
 
-	fun onClick(@Suppress("UNUSED_PARAMETER") view: View) {
+	fun onClick(view: View) {
 		val editer = sharePref.edit()
 		editer.putString("id", id.text.toString())
 		editer.putString("passwd", passwd.text.toString())

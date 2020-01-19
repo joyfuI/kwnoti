@@ -35,10 +35,10 @@ class PostActivity : AppCompatActivity() {
 			}
 		}
 
-		when (intent.getIntExtra("ItemId", 0)) {
-			R.id.notice -> post.postStrategy = NoticePost()	// 공지사항
-			R.id.ass_pds -> post.postStrategy = AssPdsPost()	// 강의자료실
-			R.id.report -> post.postStrategy = ReportPost()	// 과제게시판
+		when (intent.getStringExtra("ItemId")) {
+			"공지사항" -> post.postStrategy = NoticePost()
+			"강의자료실" -> post.postStrategy = AssPdsPost()
+			"과제게시판" -> post.postStrategy = ReportPost()
 		}
 		post.execute(p_bdseq, p_ordseq, p_subj, p_year, p_subjseq, p_class)
 	}
