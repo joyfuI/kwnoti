@@ -70,6 +70,7 @@
 			android:gravity="center"
 			android:inputType="number"
 			android:singleLine="true"
+			android:textColor="#FFFFFF"
 			android:hint="2018123456" />
 
 		<TextView
@@ -86,6 +87,7 @@
 			android:gravity="center"
 			android:inputType="textPassword"
 			android:singleLine="true"
+			android:textColor="#FFFFFF"
 			android:hint="1234" />
 
 	</LinearLayout>
