@@ -66,7 +66,7 @@ class LectureActivity : AppCompatActivity(), LectureSpinner.OnLectureSpinnerList
 		finish()	// 닫기
 	}
 
-	fun onClick(view: View) {	// 검색!
+	fun onClick(@Suppress("UNUSED_PARAMETER") view: View) {	// 검색!
 		val this_year = (this_year.selectedItem as MyItem).time
 		val hakgi = (hakgi.selectedItem as MyItem).time
 		val hh = hh.text.toString()
@@ -76,6 +76,7 @@ class LectureActivity : AppCompatActivity(), LectureSpinner.OnLectureSpinnerList
 
 		val lectureListView = LectureListView()
 		lectureListView.onLectureListViewListener = object : LectureListView.OnLectureListViewListener {
+			@Suppress("UNUSED_ANONYMOUS_PARAMETER")
 			override fun onSuccess(list: List<MyItem>) {	// 강의계획서 목록 가져오기 성공
 				lectureList = list
 

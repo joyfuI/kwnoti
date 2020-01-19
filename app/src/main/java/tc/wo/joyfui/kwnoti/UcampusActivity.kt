@@ -69,7 +69,7 @@ class UcampusActivity : AppCompatActivity(), Subject.OnSubjectListener, DialogIn
 		finish()	// 닫기
 	}
 
-	fun onClick(view: View) {	// 강의계획서 검색
+	fun onClick(@Suppress("UNUSED_PARAMETER") view: View) {	// 강의계획서 검색
 		val intent = Intent(this, LectureActivity::class.java)
 		startActivity(intent)
 	}
